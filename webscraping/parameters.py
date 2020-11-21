@@ -7,8 +7,8 @@ search_query = 'site:linkedin.com/in/ AND "python developer" AND "London"'
 file_name = 'liste_offres.csv'
 
 # login et pasword
-linkedin_username = 'loicyng@gmail.com'
-linkedin_password = ')Yq^-9MFMQ2hb=A'
+linkedin_username = 'email@linkedin.com'
+linkedin_password = '**pasword**'
 import random
 
 def hard_skills(n):
