@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SIGN UP</title>
+    <link rel="stylesheet" href="assets/css/login.css" />
+</head>
+<body>
+<h1> <span>&#8592;</span>  <a href ="index.html"> FINDER </a> </h1>
+
+<div class="login">
+  <h1>creation d'un compte</h1>
+    <form method="post">
+        <input type="text" name="f_name" placeholder="Nom de famille" required="requis" />
+        <input type="text" name="l_name" placeholder="Prenom" required="requis" />
+        <input type="text" name="utilisateur" placeholder="Utiliateur" required="requis" />
+        <input type="email" name="utilisateur" placeholder="Email" required="requis" />
+        <input type="password" name="mdp" placeholder="Mot de passe" required="requis" />
+        <input type="password" name="mdp_check" placeholder="Confirmez mot de passe" required="requis" />
+        <input type="date", name="naissance", required ="requis">
+
+        <p>
+            <label for="sexe-select">Votre sexe:</label>
+            <select name="sexe" id="sexe-select">
+                <option value="">--Choisissez une option--</option>
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+            </select>
+        </p>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Enregistrer</button>
+    </form>
+    <p><center> <span>&#8592;</span>  <a href ="login.html">retour sur login</a> </center> <p>
+</div>
+
+</body>
+</html>
