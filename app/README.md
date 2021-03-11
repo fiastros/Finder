@@ -21,4 +21,4 @@ python3 main.py  ou python main.py
 
 Entrer cette url sur un navigateur: `http://127.0.0.1:5000`
 
-pour toute question technique et/ou 
+pour toute question contactez nous sur : aurelie.mollier@etu.unilasalle.fr ou loicyng@gmail.com

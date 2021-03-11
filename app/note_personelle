@@ -1,0 +1,7 @@
+#kill les ports qui sont utiliser par python
+ps -fA | grep python
+kill 3529  -> --port=43159
+
+#les lignes dans le main.css qui contient les images
+1815 -- 2064 -- 2395 -- 2502
+  
