@@ -5,20 +5,20 @@
     {% endblock %}
 
 
-    {% block menu %}
-					<li><a href="/login">Login</a></li>
+    {% block menu %}				
 					<li><a href="/">Acceuil</a></li>
 					<li><a href="/description">Description</a></li>
+					<li><a href ="/logout">Logout</a></li>
     {% endblock %}
     
-    
-     {% block header %}        
+
+    {% block header %}        
         <div id="heading" >
             <h1>
                 Generic Page
     		</h1>
 		</div>       
-	 {% endblock %}
+	{% endblock %}
     
     {% block main%}
 		<!-- Main -->
@@ -26,10 +26,20 @@
 				<div class="inner">
 					<div class="content">
 					
+    				<center>	
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    {% for msg in messages %}
+                                        <p> {{ msg }} </p>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+					</center>
 					
 						<header>
-							<h2>Feugiat consequat  </h2>
+							<h2>Hello </h2>
 						</header>
+						
 						
 						
 						<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod tempus. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida lorem ipsum dolor sit amet dolor feugiat consequat. </p>

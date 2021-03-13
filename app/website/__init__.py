@@ -8,7 +8,7 @@ DB_NAME = "users_database.db"
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = "mysecretkey"
+    app.config['SECRET_KEY'] = "secret_key"
     app.config["SQLAMCHEMY_DATABASE_URI"] = f'sqlite:///{DB_NAME}'
     db.init(app)
 

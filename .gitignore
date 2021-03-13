@@ -23,3 +23,9 @@ questionnaire
 linkedin_login
 .spyproject
 .idea
+app/.idea
+app/trash
+app/website/__pycache__
+app/website/.idea
+app/website/Description - Projet Finder_files
+

@@ -9,12 +9,21 @@
 <h1> <span>&#8592;</span>  <a href ="/"> FINDER </a> </h1>
 
 <div class="login">
+
+    {% with messages = get_flashed_messages() %}
+           {% if messages %}
+               {% for msg in messages %}
+                   <p> {{ msg }} </p>
+               {% endfor %}
+           {% endif %}
+    {% endwith %}
+
   <h1>creation d'un compte</h1>
     <form method="post">
         <input type="text" name="f_name" placeholder="Nom de famille" required="requis" />
         <input type="text" name="l_name" placeholder="Prenom" required="requis" />
-        <input type="text" name="utilisateur" placeholder="Utiliateur" required="requis" />
-        <input type="email" name="utilisateur" placeholder="Email" required="requis" />
+        <input type="text" name="utilisateur" placeholder="Utilisateur" required="requis" />
+        <input type="email" name="email" placeholder="Email" required="requis" />
         <input type="password" name="mdp" placeholder="Mot de passe" required="requis" />
         <input type="password" name="mdp_check" placeholder="Confirmez mot de passe" required="requis" />
         <input type="date", name="naissance", required ="requis">
@@ -28,7 +37,16 @@
             </select>
         </p>
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Enregistrer</button>
+        <p>
+            <label for="sexe-select">Vous êtes:</label>
+            <select name="compte" id="sexe-select">
+                <option value="">--Choisissez une option--</option>
+                <option value="candidat">Candidat</option>
+                <option value="entreprise">Entreprise</option>
+            </select>
+        </p>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large", value="submit">Enregistrer</button>
     </form>
     <p><center> <span>&#8592;</span>  <a href ="/login">retour sur login</a> </center> <p>
 </div>

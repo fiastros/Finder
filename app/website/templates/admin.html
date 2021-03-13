@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+    {%block title%}
+        Admin  -  views
+    {% endblock %}
+
+
+    {% block menu %}
+					<li><a href="/">Acceuil</a></li>
+					<li><a href="/description">Description</a></li>
+					<li><a href="/matching">Matcher</a></li>
+					<li><a href ="/logout">Logout</a></li>
+    {% endblock %}
+    
+
+    {% block header %}        
+        <div id="heading" >
+            <h1>
+                Administrateur du site : {{admin}} !
+    		</h1>
+		</div>       
+	{% endblock %}
+    
+    {% block main%}
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+					
+    				<center>	
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    {% for msg in messages %}
+                                        <p> {{ msg }} </p>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+					</center>
+					
+						<header>
+							<h2> la base de données utilisateurs actuels </h2>
+						</header>
+						
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Utilisateur</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Type de compte</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in values %}
+                                <tr>
+    								<td>  {{item.first_name}}  </td>
+        							<td>  {{item.last_name}} </td>
+        							<td>  {{item.username}}  </td>      								
+                                    <td>  {{ item.compte}} </td>
+                                    <td>
+                                        <button type="submit" name="user_view" value="#"> Consulter </button>
+                                        <button type="submit" name="user_delete" value="#"> Delete </button>
+                                    </td>
+                                </tr>
+								{% endfor %}	
+                            </tbody>
+                        </table>
+
+
+
+					</div>
+				</div>
+			</section>
+
+    {% endblock %}
