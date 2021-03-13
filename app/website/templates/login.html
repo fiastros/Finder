@@ -9,13 +9,22 @@
 <h1> <span>&#8592;</span>  <a href ="/"> FINDER </a> </h1>
 
 <div class="login">
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p> {{ msg }} </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
   <h1>Login</h1>
-    <form method="post">
+    <form method="post" action = "#">
         <input type="text" name="utilisateur" placeholder="utilisateur" required="requis" />
         <input type="password" name="mdp" placeholder="mot de passe" required="requis" />
-        <button type="submit" class="btn btn-primary btn-block btn-large">Se connecter</button>
+        <button type="submit" class="btn btn-primary btn-block btn-large", value= "submit">Se connecter</button>
     </form>
-    <p><center> <a href ="signup">Creer un compte</a> </center> <p>
+    <p><center> <a href ="/signup">Creer un compte</a> </center> <p>
 </div>
 
 </body>
