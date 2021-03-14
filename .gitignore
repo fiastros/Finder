@@ -28,4 +28,5 @@ app/trash
 app/website/__pycache__
 app/website/.idea
 app/website/Description - Projet Finder_files
-app/note_personelle
+finder/app/note_personelle
+finder/app/website/static/.idea
