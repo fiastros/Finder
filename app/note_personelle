@@ -6,3 +6,8 @@ kill 3529  -> --port=43159
 1815 -- 2064 -- 2395 -- 2502
  
  category de flash -> warning, info , error
+ 
+ refaire la base de données car elle sera plus compliqué: one to many, many to many
+ 
+ configurer que certaine partage ai besoin d'être loger
+ configuer aussi l'adminpage

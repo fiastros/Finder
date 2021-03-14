@@ -5,10 +5,13 @@
     {% endblock %}
 
 
-    {% block menu %}				
-					<li><a href="/">Acceuil</a></li>
-					<li><a href="/description">Description</a></li>
-					<li><a href ="/logout">Logout</a></li>
+    {% block menu %}			
+    	<li><a href="/">Acceuil</a></li>
+		<li><a href="/description">Description</a></li>
+		<li><a href ="/logout">Logout</a></li>
+		{% if admin %}
+    		<li><a href ="/admin">Admin</a></li>
+    	{% endif %}
     {% endblock %}
     
 
@@ -27,30 +30,49 @@
 					<div class="content">
 					
     				<center>	
-                            {% with messages = get_flashed_messages() %}
-                                {% if messages %}
-                                    {% for msg in messages %}
-                                        <p> {{ msg }} </p>
-                                    {% endfor %}
-                                {% endif %}
-                            {% endwith %}
+                       {% with messages = get_flashed_messages( with_categories=true ) %}
+                            {% if messages %}
+                                {% for category,msg in messages %}
+                                
+                                    {% if category =="fail" %}
+                                        <div  class ="alert alert-danger alter-dismissable fade show", role="alert">           
+                                             {{ msg }} 
+                                        </div>
+                                    {% else %}
+                                        <div  class ="alert alert-success alter-dismissable fade show", role="alert">           
+                                             {{ msg }} 
+                                        </div>
+                                    {% endif %}
+                                
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
 					</center>
 					
-						<header>
-							<h2>Hello </h2>
-						</header>
-						
-						
-						
-						<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod tempus. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida lorem ipsum dolor sit amet dolor feugiat consequat. </p>
-						<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod tempus. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida lorem ipsum dolor sit amet dolor feugiat consequat. </p>
-						<hr />
-						<h3>Magna odio tempus commodo</h3>
-						<p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer lobortis commodo ornare aliquet accumsan erat tempus amet porttitor. Ante commodo blandit adipiscing integer semper orci eget. Faucibus commodo adipiscing mi eu nullam accumsan morbi arcu ornare odio mi adipiscing nascetur lacus ac interdum morbi accumsan vis mi accumsan ac praesent.</p>
-						<p>Felis sagittis eget tempus primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Magna sed etiam ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus lorem ipsum dolor sit amet nullam.</p>
-					
-					
-					</div>
+    						
+                            <h1 align="center">Notes</h1>
+                            {% if user.profil.cv %}
+                                <ul class="list-group list-group-flush" id="notes">
+                                  {% for note in range(1) %}
+                                  <li class="list-group-item">
+                                    {{ user.profil.cv}} 
+                                    <button type="button" class="close" onClick="deleteNote({{ user.profil.id }})">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </li>
+                                  {% endfor %}
+                                </ul>
+                            {% endif %}
+                            
+                            <form method="POST">
+                              <textarea name="cv" id="cv" class="form-control"></textarea>
+                              <br/>
+                              <div align="center">
+                                <button type="submit" class="btn btn-primary">valider le cv</button>
+                              </div>
+                            </form>
+            					
+                    </div>
 				</div>
 			</section>
 

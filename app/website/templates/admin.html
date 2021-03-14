@@ -16,7 +16,7 @@
     {% block header %}        
         <div id="heading" >
             <h1>
-                Administrateur du site : {{admin}} !
+                Administrateur du site : {{current_user.username}} !
     		</h1>
 		</div>       
 	{% endblock %}
@@ -28,13 +28,23 @@
 					<div class="content">
 					
     				<center>	
-                            {% with messages = get_flashed_messages() %}
-                                {% if messages %}
-                                    {% for msg in messages %}
-                                        <p> {{ msg }} </p>
-                                    {% endfor %}
-                                {% endif %}
-                            {% endwith %}
+                        {% with messages = get_flashed_messages( with_categories=true ) %}
+                            {% if messages %}
+                                {% for category,msg in messages %}
+                                
+                                    {% if category =="fail" %}
+                                        <div  class ="alert alert-danger alter-dismissable fade show", role="alert">           
+                                             {{ msg }} 
+                                        </div>
+                                    {% else %}
+                                        <div  class ="alert alert-success alter-dismissable fade show", role="alert">           
+                                             {{ msg }} 
+                                        </div>
+                                    {% endif %}
+                                
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
 					</center>
 					
 						<header>

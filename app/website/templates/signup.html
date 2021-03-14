@@ -10,16 +10,26 @@
 
 <div class="login">
 
-    {% with messages = get_flashed_messages() %}
-           {% if messages %}
-               {% for msg in messages %}
-                   <p> {{ msg }} </p>
-               {% endfor %}
-           {% endif %}
-    {% endwith %}
+    {% with messages = get_flashed_messages( with_categories=true ) %}
+         {% if messages %}
+             {% for category,msg in messages %}
+             
+                 {% if category =="fail" %}
+                     <div  class ="alert alert-danger alter-dismissable fade show", role="alert">           
+                          {{ msg }} 
+                     </div>
+                 {% else %}
+                     <div  class ="alert alert-success alter-dismissable fade show", role="alert">           
+                          {{ msg }} 
+                     </div>
+                 {% endif %}
+             
+             {% endfor %}
+         {% endif %}
+     {% endwith %}
 
   <h1>creation d'un compte</h1>
-    <form method="post">
+    <form method="post" action="#">
         <input type="text" name="f_name" placeholder="Nom de famille" required="requis" />
         <input type="text" name="l_name" placeholder="Prenom" required="requis" />
         <input type="text" name="utilisateur" placeholder="Utilisateur" required="requis" />
