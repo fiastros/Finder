@@ -6,6 +6,10 @@ from flask_login import login_user, login_required, logout_user, current_user
  
 auth = Blueprint('auth',__name__)
 
+#definir les admin du site
+liste_admin = ["loic"]
+admin = False
+
 @auth.route("/login", methods = ['POST',"GET"])
 def login():
     if request.method =="POST":
@@ -13,23 +17,38 @@ def login():
         user_password =  request.form.get("mdp")
         
         found_user = Candidat.query.filter_by(username = username).first()
-        if found_user  : 
+        if found_user : 
             if check_password_hash(found_user.password,user_password) :
-                login_user(found_user, remember=True)
+                login_user(found_user, remember=False)
+                
+                #TODO: candidat ou une entreprise? 
+                if (username in liste_admin) and (found_user.compte != "admin"):
+                    found_user.compte = "admin"
+                    db.session.commit()
+
                 flash(f"vous êtes bien connecté {username}!", category="success")
                 return redirect(url_for("views.matching"))
             else:
                 flash("erreur de mot de passe!", category="fail")
         else:
             flash("ce compte n'existe pas", category="fail")
+    else:
+       if current_user.is_authenticated :
+           flash(f"vous êtes deja connecté {current_user.username}", "fail")
+           return redirect(url_for("views.matching"))
+        
     return render_template("login.html")
         
 @auth.route("/logout")
 @login_required
 def logout():
-    logout_user()
-    flash("vous êtes bien deconnete !")
+    if current_user.is_authenticated :
+        logout_user()
+        flash("vous êtes bien deconnete !",'succes')
+    else:
+        flash("authentifié vous d'abord",'fail')
     return redirect(url_for("auth.login"))
+    
 
 @auth.route("/signup", methods = ["POST","GET"])
 def signup():       
@@ -69,9 +88,12 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
             
-            login_user(new_user, remember=True)
+            login_user(new_user, remember=False)
+            
             flash(f"vous avez bien creer un compte {username}",category ='success')
             return redirect(url_for("views.matching"))
-        
-   
+    else:
+         if current_user.is_authenticated :
+             flash(f"deconnectez-vous d'abord {current_user.username}",'fail')
+             return redirect(url_for("views.matching"))
     return render_template("signup.html")

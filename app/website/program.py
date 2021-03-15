@@ -119,7 +119,7 @@ def logout():
         session.pop("admin",None)
         
     else:
-        flash(f" Vous êtes déja deconnecté !", "info")    
+        flash("Vous êtes déja deconnecté !","info")    
     return redirect(url_for("login"))
 
 @app.route('/matching', methods = ["POST","GET"])

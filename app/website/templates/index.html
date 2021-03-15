@@ -9,12 +9,11 @@
         {% else %}
             <li><a href="/description">Description</a></li>
             <li><a href="/matching">matcher</a></li>
+            {% if user.compte == "admin"  %}
+                <li><a href ="/admin">Admin</a></li>
+            {% endif %}
         	<li><a href ="/logout">Logout</a></li>
-        {% endif %}
-        
-        {% if admin %}
-            <li><a href ="/admin">Admin</a></li>
-        {% endif %}
+        {% endif %}       
     {% endblock %}
 
 	{% block main %}

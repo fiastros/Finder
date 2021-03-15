@@ -8,17 +8,17 @@
     {% block menu %}			
     	<li><a href="/">Acceuil</a></li>
 		<li><a href="/description">Description</a></li>
+        {% if user.compte == "admin"  %}
+            <li><a href ="/admin">Admin</a></li>
+        {% endif %}
 		<li><a href ="/logout">Logout</a></li>
-		{% if admin %}
-    		<li><a href ="/admin">Admin</a></li>
-    	{% endif %}
     {% endblock %}
     
 
     {% block header %}        
         <div id="heading" >
             <h1>
-                Generic Page
+                page du candidat
     		</h1>
 		</div>       
 	{% endblock %}

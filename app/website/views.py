@@ -1,6 +1,6 @@
 from flask import  Blueprint, Flask, redirect , url_for , render_template, request, session, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Candidat_profil
+from .models import Candidat_profil, Candidat
 from . import db
 import json
 
@@ -36,7 +36,11 @@ def matching():
 @views.route("/admin")
 @login_required
 def admin():
-    return render_template("admin.html",user = current_user)
+    if current_user.compte !="admin":
+        flash("vous n'êtes pas admin !",'fail')
+        return redirect(url_for("views.matching"))
+    all_candidat = Candidat.query.all()
+    return render_template("admin.html",user = current_user, all_candidats = all_candidat)
 
 @views.route("/delete-note", methods=["POST"])
 def delete_note():

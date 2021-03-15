@@ -10,11 +10,10 @@
             {% else %}
                     <li><a href="/">Accueil</a></li>
 					<li><a href="/matching">Matcher</a></li>
+                    {% if user.compte == "admin"  %}
+                            <li><a href ="/admin">Admin</a></li>
+                    {% endif %}
 					<li><a href ="/logout">Logout</a></li>
-            {% endif %}
-            
-            {% if admin %}
-                <li><a href ="/admin">Admin</a></li>
             {% endif %}
     {% endblock %}
 
@@ -23,7 +22,7 @@
         <div id="heading" >
             <h1>
                 Description de Finder
-		</h1>
+    		</h1>
 		</div>        
 	 {% endblock %}
 

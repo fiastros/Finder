@@ -48,7 +48,7 @@
 					</center>
 					
 						<header>
-							<h2> la base de données utilisateurs actuels </h2>
+							<center> <h3> La base de données utilisateurs actuels </h3> </center>
 						</header>
 						
                         <table class="styled-table">
@@ -62,12 +62,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for item in values %}
+                                {% for candidat in all_candidats %}
                                 <tr>
-    								<td>  {{item.first_name}}  </td>
-        							<td>  {{item.last_name}} </td>
-        							<td>  {{item.username}}  </td>      								
-                                    <td>  {{ item.compte}} </td>
+    								<td>  {{candidat.first_name}}  </td>
+        							<td>  {{candidat.last_name}} </td>
+        							<td>  {{candidat.username}}  </td>      								
+                                    <td>  {{candidat.compte}} </td>
                                     <td>
                                         <button type="submit" name="user_view" value="#"> Consulter </button>
                                         <button type="submit" name="user_delete" value="#"> Delete </button>
