@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+    {%block title%}
+        Information personnelle
+    {% endblock %}
+
+    {% block menu %}			
+    	<li><a href="/">Acceuil</a></li>
+		<li><a href="/description">Description</a></li>
+		<li><a href="/matching">Matching</a></li>
+        {% if current_user.compte == "admin"  %}
+            <li><a href ="/admin">Admin</a></li>
+        {% elif current_user.compte == "candidat" %}
+            <!-- definir les pages que seul le candidat peut acceder -->
+        {% elif current_user.compte == "entreprise" %}
+            <!-- definir les pages dont seul un entreprise peut acceder -->
+        {% endif %}
+		<li><a href ="/logout">Logout</a></li>
+    {% endblock %}
+    
+    {% block header %}        
+        <div id="heading" >
+            <h1>
+                informations personnelles
+    		</h1>
+		</div>       
+	{% endblock %}
+    
+    {% block main%}
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+					
+    				<center>	
+                       {% with messages = get_flashed_messages( with_categories=true ) %}
+                            {% if messages %}
+                                {% for category,msg in messages %}
+                                
+                                    {% if category =="fail" %}
+                                        <div  class ="alert alert-danger alter-dismissable fade show", role="alert">           
+                                             {{ msg }} 
+                                        </div>
+                                    {% else %}
+                                        <div  class ="alert alert-success alter-dismissable fade show", role="alert">           
+                                             {{ msg }} 
+                                        </div>
+                                    {% endif %}
+                                
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+					</center>
+					
+    						
+                            <h1 align="center">Vos informations</h1>
+                            
+                            <form method="post" action="#">
+                             <!-- mettre tout ceci au bon format *-->
+                             
+                                <input type="text" name="f_name" placeholder="Nom de famille" required="requis" value={{current_user.first_name}} />
+                                <input type="text" name="l_name" placeholder="Prénom" required="requis" value={{current_user.last_name}}  />
+                                <input type="email" name="email" placeholder="Email"  required="requis" value={{current_user.email}} />
+                                <input type="text" name="addresse" placeholder="Addresse"  required="requis" value={{current_user.addresse}} />
+                                <input type="text" name="ville" placeholder="Ville" required="requis" value={{current_user.ville}} />
+                                <input type="text" name="code_postale" placeholder="Code postale" required="requis" value={{current_user.code_postale}} />
+                                <input type="date", name="naissance", required ="requis">
+                        
+                                <p>
+                                    <label for="sexe-select">Votre sexe:</label>
+                                    <select name="sexe" id="sexe-select">
+                                        <option value="">{{current_user.sexe}}</option>
+                                        <option value="homme">Homme</option>
+                                        <option value="femme">Femme</option>
+                                    </select>
+                                </p>
+                        
+                                <button type="submit" class="btn btn-primary btn-block btn-large", value="submit">Enregistrer</button>
+                            
+                            </form>
+                                                                                        					
+                    </div>
+				</div>
+			</section>
+
+    {% endblock %}

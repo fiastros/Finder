@@ -4,14 +4,19 @@
     {% endblock %}
 
 	{% block menu %}
-	        {% if not user.is_authenticated %}	
+	        {% if not current_user.is_authenticated %}	
 					<li><a href="/login">Login</a></li>
 					<li><a href="/">Accueil</a></li>
             {% else %}
                     <li><a href="/">Accueil</a></li>
 					<li><a href="/matching">Matcher</a></li>
-                    {% if user.compte == "admin"  %}
-                            <li><a href ="/admin">Admin</a></li>
+                    {% if current_user.compte == "admin"  %}
+                        <li><a href ="/admin">Admin</a></li>
+                        <li><a href="/candidat/personnelle">identité </a>
+                    {% elif current_user.compte == "candidat" %}
+                        <li><a href="/candidat/personnelle">identité </a>
+                    {% elif current_user.compte == "entreprise" %}
+                        <!-- mettre les liens pour entreprises ici -->              
                     {% endif %}
 					<li><a href ="/logout">Logout</a></li>
             {% endif %}

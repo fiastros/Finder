@@ -15,9 +15,11 @@ def create_app():
         
     from .views import views
     from .auth import auth
+    from .candidats import candidats
 
     app.register_blueprint(views, url_prefix="")
     app.register_blueprint(auth, url_prefix="")
+    app.register_blueprint(candidats, url_prefix="/candidat")
     
     from .models import Candidat, Candidat_profil,Entreprise,Entreprise_profil,Admin
 
@@ -26,15 +28,18 @@ def create_app():
     login_manager = LoginManager()
     login_manager.login_view = "auth.login"
     login_manager.login_message = "connectez-vous d'abord !"
-    login_manager.login_message_category="fail"
+    login_manager.login_message_category="info"
+    login_manager.needs_refresh_message = (u"veuillez vous reconnecter s'il vous plaît")
+    login_manager.needs_refresh_message_category= "info"
     login_manager.init_app(app)
-
+    
     @login_manager.user_loader
     def load_user(id):
         return Candidat.query.get(int(id))
     
     return app
-
+    
+      
 def create_database(app):
     if not path.exists("website/"+DB_NAME):
         db.create_all(app=app)

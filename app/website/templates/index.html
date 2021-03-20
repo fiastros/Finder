@@ -3,14 +3,19 @@
     {% block title%} Projet Finder {% endblock %}
 
     {% block menu %}
-        {% if not user.is_authenticated %}	
+        {% if not current_user.is_authenticated %}	
             <li><a href="/login">Login</a></li>
         	<li><a href="/description">Description</a></li>
         {% else %}
             <li><a href="/description">Description</a></li>
             <li><a href="/matching">matcher</a></li>
-            {% if user.compte == "admin"  %}
+            {% if current_user.compte == "admin"  %}
                 <li><a href ="/admin">Admin</a></li>
+                <li><a href="/candidat/personnelle">identité</a>
+            {% elif current_user.compte == "candidat" %}
+                <li><a href="/candidat/personnelle">identité</a>
+            {% elif current_user.compte == "entreprise" %}
+                <!-- mettre les liens pour entreprises ici -->              
             {% endif %}
         	<li><a href ="/logout">Logout</a></li>
         {% endif %}       

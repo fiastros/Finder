@@ -1,21 +1,16 @@
 {% extends "base.html" %}
 
     {%block title%}
-        Generic Page 
+        Generic Page - Industrious by TEMPLATED
     {% endblock %}
 
 
     {% block menu %}			
     	<li><a href="/">Acceuil</a></li>
 		<li><a href="/description">Description</a></li>
-            {% if current_user.compte == "admin"  %}
-                <li><a href ="/admin">Admin</a></li>
-                <li><a href="/candidat/personnelle">identité </a>
-            {% elif current_user.compte == "candidat" %}
-                <li><a href="/candidat/personnelle">identité </a>
-            {% elif current_user.compte == "entreprise" %}
-                <!-- mettre les liens pour entreprises ici -->              
-            {% endif %}
+        {% if user.compte == "admin"  %}
+            <li><a href ="/admin">Admin</a></li>
+        {% endif %}
 		<li><a href ="/logout">Logout</a></li>
     {% endblock %}
     
@@ -56,12 +51,12 @@
 					
     						
                             <h1 align="center">Notes</h1>
-                            {% if current_user.profil.cv %}
+                            {% if user.profil.cv %}
                                 <ul class="list-group list-group-flush" id="notes">
-                                  {% for note in current_user.profil.cv  %}
+                                  {% for note in range(1) %}
                                   <li class="list-group-item">
-                                    {{ current_user.profil.cv}} 
-                                    <button type="button" class="close" onClick="deleteNote({{ current_user.profil.id }})">
+                                    {{ user.profil.cv}} 
+                                    <button type="button" class="close" onClick="deleteNote({{ user.profil.id }})">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </li>
