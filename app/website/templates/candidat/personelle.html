@@ -67,38 +67,67 @@
                     </center>
                         						
                             <br>
-                            
+                            <!--
+                                    <div class="img-thumbnail img-circle" id="profile-container">
+                                      <div style="position: relative; padding: 0; cursor: pointer;" type="file">
+                                        <img class="img-circle" id="profileImage" style="width: 140px; height: 140px;">
+                                        <span style="position: absolute; color: red; ">
+                                            Profil
+                                            <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+                                        </span>
+                                        
+                                      </div>
+                                    </div>
+                                -->                                
+                                   
+                                   
+                                   <div class="content-section">
+                                   
+                                      <div class="media">
+                                        <img class="rounded-circle account-img" src="{{ profil_image }}">
+                                        <div class="media-body">
+                                            {{ current_user.compte.capitalize() }}
+                                            <br>{{ current_user.username }} 
+                                            <br> {{ current_user.naissance }}
+                                                
+                                            
+                                            
+                                        </div>
+                                      </div>
+                                      <!-- FORM HERE -->
+                                   </div>
+                                                                   
                                    
 									<form method="post" action="#">
 										<div class="row gtr-uniform">
 											<div class="col-6 col-12-xsmall">
 											Nom de famille:
-												<input type="text" name="l_name" value="{{current_user.last_name}}"  placeholder="Ton Prénom..." required="requis"/>
+												<input type="text" name="l_name" value="{{current_user.last_name}}"  placeholder="Votre Prénom..." required="requis"/>
 											</div>
 																											
 											<div class="col-6 col-12-xsmall">
 											Prénom:
-												<input type="text" name="f_name" value="{{current_user.first_name}}" placeholder="Ton Nom..." required="requis"/>
+												<input type="text" name="f_name" value="{{current_user.first_name}}" placeholder="Votre Nom..." required="requis"/>
 											</div>
 											
 											<div class="col-6 col-12-xsmall">
 											Email:
-												<input type="email" name="email" value="{{current_user.email}}"  placeholder="Ton Email..." required="requis"/>
+												<input type="email" name="email" value="{{current_user.email}}"  placeholder="Votre Email..." required="requis"/>
 											</div>
 											
 											<div class="col-6 col-12-xsmall">
 											Adresse
-												<input type="text" name="adresse" value="{{current_user.adresse}}"  placeholder="Ton addresse..." required="requis"/>
+												<input type="text" name="adresse" value="{{current_user.adresse}}"  placeholder="Votre addresse..." required="requis"/>
 											</div>
 											
 											<div class="col-6 col-12-xsmall">
 											Ville
-												<input type="text" name="ville" value="{{current_user.ville}}" placeholder="Ta ville..." required="requis"/>
+												<input type="text" name="ville" value="{{current_user.ville}}" placeholder="Votre ville..." required="requis"/>
 											</div>
 											
 											<div class="col-6 col-12-xsmall">
 											Code postale
-												<input type="text" name="code_postale" value="{{current_user.code_postale}}"  placeholder="Ton code postale..." required="requis"/>
+												<input type="text" name="code_postale" value="{{current_user.code_postale}}"  placeholder="Votre code postale..." required="requis"/>
 											</div>
           											
 											<!-- Break -->

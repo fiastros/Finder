@@ -5,13 +5,16 @@ from sqlalchemy import func
 
 class User(db.Model,UserMixin):   
     __tablename__ = "user"
-    id = db.Column(db.Integer,primary_key = True)  
-    email = db.Column(db.String(20))
-    password = db.Column(db.String(10))
-    adresse = db.Column(db.String(20))
-    ville = db.Column(db.String(20))
-    code_postale = db.Column(db.String(10))
-    compte = db.Column(db.String(20))
+    id = db.Column(db.Integer,primary_key = True)
+    username = db.Column(db.String(20), unique =True) 
+    email = db.Column(db.String(20), default="")
+    password = db.Column(db.String(10), default="")
+    adresse = db.Column(db.String(20), default="")
+    ville = db.Column(db.String(20), default="")
+    code_postale = db.Column(db.String(10), default="")
+    compte = db.Column(db.String(20), default="")
+    profil_image= db.Column(db.String(20),default="default.png")
+    date = db.Column(db.DateTime(timezone=True), default = func.now())
     
     type =db.Column(db.String(20))    
     __mapper_args__ = {'polymorphic_identity':"user",
@@ -21,14 +24,10 @@ class Candidat(User):
     id = db.Column(db.Integer, db.ForeignKey("user.id") ,primary_key = True)
     __tablename__ = "candidat_parent"
 
-    first_name = db.Column(db.String(20))
-    last_name = db.Column(db.String(20))
-    username = db.Column(db.String(20), unique =True) 
-
-    naissance = db.Column(db.String(20))
-    sexe = db.Column(db.String(20))
-    image = db.Column(db.String(20))
-    date = db.Column(db.DateTime(timezone=True), default = func.now())
+    first_name = db.Column(db.String(20), default="")
+    last_name = db.Column(db.String(20), default="")
+    naissance = db.Column(db.String(20), default="")
+    sexe = db.Column(db.String(20), default="")    
 
     # profil = db.relationship("Candidat_profil",uselist=False, backref="candidat_parent")
     
@@ -49,13 +48,10 @@ class Candidat(User):
 class Entreprise(User):
     id = db.Column(db.Integer, db.ForeignKey("user.id") ,primary_key = True)
     __tablename__ = "entreprise_parent"
-    username = db.Column(db.String(20), unique =True) 
 
     nom = db.Column(db.String(20),unique=True)
-    siret = db.Column(db.String(20))
-    description = db.Column(db.String(10))
-    date = db.Column(db.DateTime(timezone=True), default = func.now())
-
+    siret = db.Column(db.String(20), default="")
+    description = db.Column(db.String(10), default="")
     # profil = db.relationship("Entreprise_profil",uselist=False, backref="entreprise_parent")
     
     __mapper_args__ = {'polymorphic_identity':'entreprise'}
@@ -73,9 +69,5 @@ class Entreprise(User):
 
 class Admin(User):
     id = db.Column("id",db.Integer,db.ForeignKey("user.id") ,primary_key = True)
-    username = db.Column(db.String(20), unique =True) 
-    date = db.Column(db.DateTime(timezone=True), default = func.now())
-
-
     __tablename__ = "admin_parent"
     __mapper_args__ = {'polymorphic_identity':'admin'}

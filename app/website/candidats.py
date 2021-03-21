@@ -16,11 +16,13 @@ candidats = Blueprint('candidats',__name__)
 
 @candidats.route("/personnelle")
 @login_required
-def home():
+def personnelle():
     if current_user.compte not in ["candidat","admin"]:
         flash("vous n'êtes pas un candidat !",'fail')
         return redirect(url_for("views.matching"))
-    return render_template("/candidat/personelle.html")
+    else:
+        profil_image = url_for("static",filename=f"images/{current_user.profil_image}")
+        return render_template("/candidat/personelle.html",profil_image = profil_image)
 
 
 @candidats.route("/profil")
@@ -29,7 +31,8 @@ def profil():
     if current_user.compte not in ["candidat","admin"]:
         flash("vous n'êtes pas un candidat !",'fail')
         return redirect(url_for("views.matching"))
-    return render_template("/candidat/profil.html")
+    else:
+        return render_template("/candidat/profil.html")
 
 
 @candidats.route("/approfondir")
@@ -38,4 +41,5 @@ def approfondir():
     if current_user.compte not in ["candidat","admin"]:
         flash("vous n'êtes pas un candidat !",'fail')
         return redirect(url_for("views.matching"))
-    return render_template("/candidat/approfondir.html")
+    else:
+        return render_template("/candidat/approfondir.html")
