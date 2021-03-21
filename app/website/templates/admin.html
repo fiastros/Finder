@@ -4,13 +4,17 @@
         Admin  -  views
     {% endblock %}
 
+     {% block css %}
+         <link rel="stylesheet" href="../static/css/candidat.css"/>  
+     {% endblock %}
+
 
     {% block menu %}
 					<li><a href="/">Acceuil</a></li>
 					<li><a href="/description">Description</a></li>
+					<li><a href="/candidat/personnelle">identité </a>
 					<li><a href="/matching">Matcher</a></li>
-					<li><a href ="/logout">Logout</a></li>
-                    <li><a href="/candidat/personnelle">identité </a>
+					<li><a href ="/logout">Logout</a></li>                   
     {% endblock %}
     
 
@@ -52,6 +56,17 @@
 							<center> <h3> La base de données utilisateurs actuels </h3> </center>
 						</header>
 						
+					<center>
+    					<div class="pagination">
+                          <a href="#">&laquo;</a>
+                          <a href="#" class="active">Base de doonnées candidat</a>
+                          <a href="#">Base de données Entreprise</a>
+                          <a href="#">Résultat</a>
+                          <a href="#">&raquo;</a>
+                        </div>
+                    </center>
+						
+						
                         <table class="styled-table">
                             <thead>
                                 <tr>
@@ -59,16 +74,18 @@
                                     <th>Nom</th>
                                     <th>Prenom</th>
                                     <th>Type de compte</th>
+                                    <th>Date de creation</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for candidat in all_candidats %}
                                 <tr>
-    								<td>  {{candidat.first_name}}  </td>
+    								<td>  {{candidat.username}}  </td>
         							<td>  {{candidat.last_name}} </td>
-        							<td>  {{candidat.username}}  </td>      								
-                                    <td>  {{candidat.compte}} </td>
+        							<td>  {{candidat.first_name}} </td> 
+        							<td>  {{candidat.compte}} </td>    
+        							<td>  {{candidat.date}} </td>						                                    
                                     <td>
                                         <button type="submit" name="user_view" value="#"> Consulter </button>
                                         <button type="submit" name="user_delete" value="#"> Delete </button>

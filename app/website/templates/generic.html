@@ -10,9 +10,9 @@
 		<li><a href="/description">Description</a></li>
             {% if current_user.compte == "admin"  %}
                 <li><a href ="/admin">Admin</a></li>
-                <li><a href="/candidat/personnelle">identité </a>
+                <li><a href="/candidat/personnelle">identité</a>
             {% elif current_user.compte == "candidat" %}
-                <li><a href="/candidat/personnelle">identité </a>
+                <li><a href="/candidat/personnelle">identité</a>
             {% elif current_user.compte == "entreprise" %}
                 <!-- mettre les liens pour entreprises ici -->              
             {% endif %}
@@ -55,12 +55,13 @@
 					</center>
 					
     						
-                            <h1 align="center">Notes</h1>
-                            {% if current_user.profil.cv %}
+                            <h1 align="center">Notes </h1>
+                            <!--
+                            {% if current_user.cv %}
                                 <ul class="list-group list-group-flush" id="notes">
                                   {% for note in current_user.profil.cv  %}
                                   <li class="list-group-item">
-                                    {{ current_user.profil.cv}} 
+                                    {{ current_user.cv}} 
                                     <button type="button" class="close" onClick="deleteNote({{ current_user.profil.id }})">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -68,12 +69,13 @@
                                   {% endfor %}
                                 </ul>
                             {% endif %}
+                            -->
                             
                             <form method="POST">
                               <textarea name="cv" id="cv" class="form-control"></textarea>
                               <br/>
                               <div align="center">
-                                <button type="submit" class="btn btn-primary">valider le cv</button>
+                                <button type="submit" class="btn btn-primary">valider votre note</button>
                               </div>
                             </form>
             					

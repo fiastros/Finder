@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>SIGN UP</title>
     <link rel="stylesheet" href="../static/css/login.css" />
+    <link rel="stylesheet" href="../static/css/candidat.css"/>  
 </head>
 <body>
 <h1> <span>&#8592;</span>  <a href ="/"> FINDER </a> </h1>
@@ -28,35 +29,26 @@
          {% endif %}
      {% endwith %}
 
-  <h1>creation d'un compte</h1>
+  <h1>Sign Up</h1>
+  
+    <center>
+        <div class="pagination">
+           <a href="/signup">Candidat</a>
+           <a href="#" class="active">Entreprise</a>
+        </div>
+    </center>
+  
+      <br>
+  
     <form method="post" action="#">
-        <input type="text" name="f_name" placeholder="Nom de famille" required="requis" />
-        <input type="text" name="l_name" placeholder="Prenom" required="requis" />
+        <input type="text" name="entreprise" placeholder="Nom de l'entreprise" required="requis" />
         <input type="text" name="utilisateur" placeholder="Utilisateur" required="requis" />
+        <input type="number" name="siret" placeholder="Siret" required="requis" />
         <input type="email" name="email" placeholder="Email" required="requis" />
         <input type="password" name="mdp" placeholder="Mot de passe" required="requis" />
         <input type="password" name="mdp_check" placeholder="Confirmez mot de passe" required="requis" />
-        <input type="date", name="naissance", required ="requis">
 
-        <p>
-            <label for="sexe-select">Votre sexe:</label>
-            <select name="sexe" id="sexe-select">
-                <option value="">--Choisissez une option--</option>
-                <option value="homme">Homme</option>
-                <option value="femme">Femme</option>
-            </select>
-        </p>
-
-        <p>
-            <label for="sexe-select">Vous êtes:</label>
-            <select name="compte" id="sexe-select">
-                <option value="">--Choisissez une option--</option>
-                <option value="candidat">Candidat</option>
-                <option value="entreprise">Entreprise</option>
-            </select>
-        </p>
-
-        <button type="submit" class="btn btn-primary btn-block btn-large", value="submit">Enregistrer</button>
+        <button type="submit" class="btn btn-primary btn-block btn-large", value="entreprise">Enregistrer</button>
     </form>
     <p><center> <span>&#8592;</span>  <a href ="/login">retour sur login</a> </center> <p>
 </div>

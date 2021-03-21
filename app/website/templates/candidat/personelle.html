@@ -4,6 +4,10 @@
         Information personnelle
     {% endblock %}
 
+     {% block css %}
+         <link rel="stylesheet" href="../static/css/candidat.css"/>  
+     {% endblock %}
+
     {% block menu %}			
     	<li><a href="/">Acceuil</a></li>
 		<li><a href="/description">Description</a></li>
@@ -21,7 +25,7 @@
     {% block header %}        
         <div id="heading" >
             <h1>
-                informations personnelles
+                Votre profil candidat
     		</h1>
 		</div>       
 	{% endblock %}
@@ -52,32 +56,83 @@
                         {% endwith %}
 					</center>
 					
-    						
-                            <h1 align="center">Vos informations</h1>
+					<center>
+    					<div class="pagination">
+                          <a href="/candidat/approfondir">&laquo;</a>
+                          <a href="#" class="active">Information personelle</a>
+                          <a href="/candidat/profil">Profil</a>
+                          <a href="/candidat/approfondir">Approndir</a>
+                          <a href="/candidat/profil">&raquo;</a>
+                        </div>
+                    </center>
+                        						
+                            <br>
                             
-                            <form method="post" action="#">
-                             <!-- mettre tout ceci au bon format *-->
-                             
-                                <input type="text" name="f_name" placeholder="Nom de famille" required="requis" value={{current_user.first_name}} />
-                                <input type="text" name="l_name" placeholder="Prénom" required="requis" value={{current_user.last_name}}  />
-                                <input type="email" name="email" placeholder="Email"  required="requis" value={{current_user.email}} />
-                                <input type="text" name="addresse" placeholder="Addresse"  required="requis" value={{current_user.addresse}} />
-                                <input type="text" name="ville" placeholder="Ville" required="requis" value={{current_user.ville}} />
-                                <input type="text" name="code_postale" placeholder="Code postale" required="requis" value={{current_user.code_postale}} />
-                                <input type="date", name="naissance", required ="requis">
-                        
-                                <p>
-                                    <label for="sexe-select">Votre sexe:</label>
-                                    <select name="sexe" id="sexe-select">
-                                        <option value="">{{current_user.sexe}}</option>
-                                        <option value="homme">Homme</option>
-                                        <option value="femme">Femme</option>
-                                    </select>
-                                </p>
-                        
-                                <button type="submit" class="btn btn-primary btn-block btn-large", value="submit">Enregistrer</button>
-                            
-                            </form>
+                                   
+									<form method="post" action="#">
+										<div class="row gtr-uniform">
+											<div class="col-6 col-12-xsmall">
+											Nom de famille:
+												<input type="text" name="l_name" value="{{current_user.last_name}}"  placeholder="Ton Prénom..." required="requis"/>
+											</div>
+																											
+											<div class="col-6 col-12-xsmall">
+											Prénom:
+												<input type="text" name="f_name" value="{{current_user.first_name}}" placeholder="Ton Nom..." required="requis"/>
+											</div>
+											
+											<div class="col-6 col-12-xsmall">
+											Email:
+												<input type="email" name="email" value="{{current_user.email}}"  placeholder="Ton Email..." required="requis"/>
+											</div>
+											
+											<div class="col-6 col-12-xsmall">
+											Adresse
+												<input type="text" name="adresse" value="{{current_user.adresse}}"  placeholder="Ton addresse..." required="requis"/>
+											</div>
+											
+											<div class="col-6 col-12-xsmall">
+											Ville
+												<input type="text" name="ville" value="{{current_user.ville}}" placeholder="Ta ville..." required="requis"/>
+											</div>
+											
+											<div class="col-6 col-12-xsmall">
+											Code postale
+												<input type="text" name="code_postale" value="{{current_user.code_postale}}"  placeholder="Ton code postale..." required="requis"/>
+											</div>
+          											
+											<!-- Break -->
+											<div class="col-12">
+											Votre sexe:
+											{% if current_user.sexe == "homme" %}
+											<div class="col-4 col-12-small">
+												<input type="radio" id="radio-alpha" name="radio" value="homme" checked>
+												<label for="radio-alpha">Homme</label>
+											
+												<input type="radio" id="radio-beta" name="radio" value="femme">
+												<label for="radio-beta">Femme</label>
+											</div>
+                                            {% else %}
+											<div class="col-4 col-12-small">
+												<input type="radio" id="radio-alpha" name="radio" id="homme" value="homme">
+												<label for="radio-alpha">Homme</label>
+												
+												<input type="radio" id="radio-beta"  name="radio" id="femme" value="femme" checked>
+												<label for="radio-beta">Femme</label>
+											</div>
+                                             {% endif %}
+                                            </div>
+											
+											<!-- Break -->
+											
+											<div class="col-12">
+												<center><input type="submit" value="valider" class="primary"/> </center>
+											</div>
+											
+										</div>
+									</form>
+
+                                   
                                                                                         					
                     </div>
 				</div>

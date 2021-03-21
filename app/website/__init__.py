@@ -21,7 +21,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix="")
     app.register_blueprint(candidats, url_prefix="/candidat")
     
-    from .models import Candidat, Candidat_profil,Entreprise,Entreprise_profil,Admin
+    from .models import User,Candidat,Entreprise,Admin #, Candidat_profil ,Entreprise_profil,
 
     create_database(app) 
        
@@ -35,7 +35,7 @@ def create_app():
     
     @login_manager.user_loader
     def load_user(id):
-        return Candidat.query.get(int(id))
+        return User.query.get(int(id))
     
     return app
     

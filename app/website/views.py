@@ -1,6 +1,6 @@
 from flask import  Blueprint, Flask, redirect , url_for , render_template, request, session, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Candidat_profil, Candidat
+from .models import Candidat,Entreprise,User
 from . import db
 import json
 
@@ -19,17 +19,17 @@ def description():
 @views.route('/matching', methods = ["POST","GET"])
 @login_required
 def matching():  
-    if request.method =="POST":
-        cv = request.form.get("cv")
+    # if request.method =="POST":
+    #     cv = request.form.get("cv")
         
-        if len(cv) < 1 or len(cv) > 10:
-            flash("trop court votre mot !", category="fail")
-        else:
-            new_cv = Candidat_profil(cv=cv, image= cv, addresse=cv,code_postal=cv,
-                                     lettre_motivation=cv, recommendation = cv,
-                                     reponse_questionnaire=cv, user_id = current_user.id)
-            db.session.add(new_cv)
-            db.session.commit()
+    #     if len(cv) < 1 or len(cv) > 10:
+    #         flash("trop court votre mot !", category="fail")
+    #     else:
+    #         new_cv = Candidat_profil(cv=cv, image= cv, addresse=cv,code_postal=cv,
+    #                                  lettre_motivation=cv, recommendation = cv,
+    #                                  reponse_questionnaire=cv, user_id = current_user.id)
+    #         db.session.add(new_cv)
+    #         db.session.commit()
     return render_template("generic.html")
 
 

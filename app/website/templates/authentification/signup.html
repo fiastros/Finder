@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SIGN UP</title>
+    <link rel="stylesheet" href="../static/css/login.css" />
+    <link rel="stylesheet" href="../static/css/candidat.css"/>  
+</head>
+<body>
+<h1> <span>&#8592;</span>  <a href ="/"> FINDER </a> </h1>
+
+<div class="login">
+
+    {% with messages = get_flashed_messages( with_categories=true ) %}
+         {% if messages %}
+             {% for category,msg in messages %}
+             
+                 {% if category =="fail" %}
+                     <div  class ="alert alert-danger alter-dismissable fade show", role="alert">           
+                          {{ msg }} 
+                     </div>
+                 {% else %}
+                     <div  class ="alert alert-success alter-dismissable fade show", role="alert">           
+                          {{ msg }} 
+                     </div>
+                 {% endif %}
+             
+             {% endfor %}
+         {% endif %}
+     {% endwith %}
+
+  <h1>Sign Up</h1>
+  
+    <center>
+        <div class="pagination">
+           <a href="#" class="active">Candidat</a>
+           <a href="/entreprise_signup">Entreprise</a>
+        </div>
+    </center>
+  
+      <br>
+  
+    <form method="post" action="#">
+        <input type="text" name="f_name" placeholder="Prénom" required="requis" />
+        <input type="text" name="l_name" placeholder="Nom de Famille" required="requis" />
+        <input type="text" name="utilisateur" placeholder="Utilisateur" required="requis" />
+        <input type="email" name="email" placeholder="Email" required="requis" />
+        <input type="password" name="mdp" placeholder="Mot de passe" required="requis" />
+        <input type="password" name="mdp_check" placeholder="Confirmez mot de passe" required="requis" />
+        <input type="date", name="naissance", required ="requis">
+
+        <p>
+            <label for="sexe-select">Votre sexe:</label>
+            <select name="sexe" id="sexe-select">
+                <option value="">--Choisissez une option--</option>
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+            </select>
+        </p>
+        <button type="submit" class="btn btn-primary btn-block btn-large", value="candidat">Enregistrer</button>
+    </form>
+    <p><center> <span>&#8592;</span>  <a href ="/login">retour sur login</a> </center> <p>
+</div>
+
+</body>
+</html>

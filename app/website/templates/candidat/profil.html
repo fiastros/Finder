@@ -1,24 +1,31 @@
 {% extends "base.html" %}
 
     {%block title%}
-        Generic Page - Industrious by TEMPLATED
+        Profil
     {% endblock %}
 
+     {% block css %}
+         <link rel="stylesheet" href="../static/css/candidat.css"/>  
+     {% endblock %}
 
     {% block menu %}			
     	<li><a href="/">Acceuil</a></li>
 		<li><a href="/description">Description</a></li>
-        {% if user.compte == "admin"  %}
+		<li><a href="/matching">Matching</a></li>
+        {% if current_user.compte == "admin"  %}
             <li><a href ="/admin">Admin</a></li>
+        {% elif current_user.compte == "candidat" %}
+            <!-- definir les pages que seul le candidat peut acceder -->
+        {% elif current_user.compte == "entreprise" %}
+            <!-- definir les pages dont seul un entreprise peut acceder -->
         {% endif %}
 		<li><a href ="/logout">Logout</a></li>
     {% endblock %}
     
-
     {% block header %}        
         <div id="heading" >
             <h1>
-                page du candidat
+                Votre profil candidat
     		</h1>
 		</div>       
 	{% endblock %}
@@ -49,29 +56,18 @@
                         {% endwith %}
 					</center>
 					
-    						
-                            <h1 align="center">Notes</h1>
-                            {% if user.profil.cv %}
-                                <ul class="list-group list-group-flush" id="notes">
-                                  {% for note in range(1) %}
-                                  <li class="list-group-item">
-                                    {{ user.profil.cv}} 
-                                    <button type="button" class="close" onClick="deleteNote({{ user.profil.id }})">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </li>
-                                  {% endfor %}
-                                </ul>
-                            {% endif %}
-                            
-                            <form method="POST">
-                              <textarea name="cv" id="cv" class="form-control"></textarea>
-                              <br/>
-                              <div align="center">
-                                <button type="submit" class="btn btn-primary">valider le cv</button>
-                              </div>
-                            </form>
-            					
+					<center>
+    					<div class="pagination">
+                          <a href="/candidat/personnelle">&laquo;</a>
+                          <a href="/candidat/personnelle">Information personelle</a>
+                          <a href="#" class="active">Profil</a>
+                          <a href="/candidat/approfondir">Approndir</a>
+                          <a href="/candidat/approfondir">&raquo;</a>
+                        </div>
+                    </center>
+                        						
+
+                                                                                        					
                     </div>
 				</div>
 			</section>

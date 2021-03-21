@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+    {%block title%}
+        Profil
+    {% endblock %}
+
+     {% block css %}
+         <link rel="stylesheet" href="../static/css/candidat.css"/>  
+     {% endblock %}
+
+    {% block menu %}			
+    	<li><a href="/">Acceuil</a></li>
+		<li><a href="/description">Description</a></li>
+		<li><a href="/matching">Matching</a></li>
+        {% if current_user.compte == "admin"  %}
+            <li><a href ="/admin">Admin</a></li>
+        {% elif current_user.compte == "candidat" %}
+            <!-- definir les pages que seul le candidat peut acceder -->
+        {% elif current_user.compte == "entreprise" %}
+            <!-- definir les pages dont seul un entreprise peut acceder -->
+        {% endif %}
+		<li><a href ="/logout">Logout</a></li>
+    {% endblock %}
+    
+    {% block header %}        
+        <div id="heading" >
+            <h1>
+                Votre profil candidat
+    		</h1>
+		</div>       
+	{% endblock %}
+    
+    {% block main%}
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+					
+    				<center>	
+                       {% with messages = get_flashed_messages( with_categories=true ) %}
+                            {% if messages %}
+                                {% for category,msg in messages %}
+                                
+                                    {% if category =="fail" %}
+                                        <div  class ="alert alert-danger alter-dismissable fade show", role="alert">           
+                                             {{ msg }} 
+                                        </div>
+                                    {% else %}
+                                        <div  class ="alert alert-success alter-dismissable fade show", role="alert">           
+                                             {{ msg }} 
+                                        </div>
+                                    {% endif %}
+                                
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+					</center>
+					
+					<center>
+    					<div class="pagination">
+                          <a href="/candidat/profil">&laquo;</a>
+                          <a href="/candidat/personnelle">Information personelle</a>
+                          <a href="/candidat/profil">Profil</a>
+                          <a href="#" class="active">Approndir</a>
+                          <a href="/candidat/personnelle">&raquo;</a>
+                        </div>
+                    </center>
+                        						
+
+                                                                                        					
+                    </div>
+				</div>
+			</section>
+
+    {% endblock %}
